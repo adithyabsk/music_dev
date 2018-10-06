@@ -27,7 +27,7 @@ err_count = []
 def main():
     print("Welcome to Bars, your personal music tutor")
     def rightnote(obs, exp):
-        return (abs(obs - exp) < 100)
+        return ((abs(obs - exp) < 150) or (obs > 1000))
 
     def preload_display(path, length):
         return ([mpimg.imread('{}/{}right.png'.format(path, i))[30:120,:,:] for i in range(length)],
@@ -36,7 +36,7 @@ def main():
     # Setup args from commandline
     numnotes = int(sys.argv[2])
     image_path = sys.argv[1]
-    plt.rcParams["figure.figsize"] = [20.0,9.0]
+    plt.rcParams["figure.figsize"] = [20.0, 9.0]
     datafile = open(sys.argv[1] + '/data.csv','r')
     lens = []
     freqs = []
@@ -64,14 +64,18 @@ def main():
 
         if obs_note == -1:
             time.sleep(3)
-            acc = len(err_count) / numnotes
+            acc = (numnotes-len(err_count)) / numnotes
             print("Accuracy: {:.2f}%".format(acc*100))
-            if len(err_count) / numnotes <  0.8:
-                print("You missed notes {}".format(', '.join(map(str, err_count))))
-                print('Good work, you can do better though, try again until you reach 80% accuracy to move on to the next stage')
+
+            if len(err_count) > 0:
+                print("You missed note(s): {}".format(', '.join(map(str, err_count))))
             else:
                 print("You didn't miss any notes!")
-                print('Great work you are ready to move on to the next stage')
+                
+            if acc <  0.8:
+                print('Good work, you can do better though, try again until you reach 80% accuracy to move on to the next stage')
+            else:
+                print('Great work! You are ready to move on to the next stage')
             quit()
 
         global note_count
@@ -93,7 +97,7 @@ def main():
         ax1.imshow(image)
 
     # Setup recorder
-    rec = Recorder(out_fname=fname, durations=lens, debug=False)
+    rec = Recorder(out_fname=fname, durations=lens, debug=True)
     data_queue = rec.get_queue()
 
     # Play "metronome"

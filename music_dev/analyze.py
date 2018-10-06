@@ -65,12 +65,13 @@ class Recorder():
                     file.write(np_arr)
                     full_arr = np.append(full_arr, np_arr)
                     if full_arr.size >= int(next_slice_start+self.durations[dur_count]*self.sample_rate+1):
-                        if self.debug:
-                            print('Note Info: ({} num) ({} dur)'.format(dur_count, 
-                                self.durations[dur_count]))
                         slice_end = int(next_slice_start+self.durations[dur_count]*self.sample_rate)
                         raw_slice = full_arr[next_slice_start:slice_end]
-                        self.data_queue.put(self.fft_analyze(raw_slice, self.sample_rate))
+                        freq = self.fft_analyze(raw_slice, self.sample_rate)
+                        self.data_queue.put(freq)
+                        if self.debug:
+                            print('Note Info: ({} num) ({} dur) ({} freq)'.format(dur_count, 
+                                self.durations[dur_count], freq))
                         if self.debug:
                             ret_arr.append(raw_slice)
                         next_slice_start = slice_end+1
