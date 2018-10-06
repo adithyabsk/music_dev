@@ -3,6 +3,7 @@ import tempfile
 from queue import Queue
 import sys
 
+import threading
 import os
 import pickle
 import time
@@ -45,6 +46,11 @@ class Recorder():
                 print(status, file=sys.stderr)
             raw_queue.put((indata.copy(), time.inputBufferAdcTime))
 
+        try:
+            os.remove(self.out_fname)
+        except OSError:
+            pass
+
         with sf.SoundFile(self.out_fname, mode='x', samplerate=self.sample_rate,
                           channels=self.channels, subtype=None) as file:
             with sd.InputStream(samplerate=self.sample_rate, device=self.device,
@@ -80,7 +86,7 @@ class Recorder():
 
 if __name__ == '__main__':
     import threading
-    now = time.time()
+
     durations = [0.5, 0.5, 0.5, 0.5, 
                 0.5, 0.5, 1, 
                 0.5, 0.5, 1, 
@@ -90,10 +96,6 @@ if __name__ == '__main__':
                 0.5, 0.5, 0.5, 0.5,
                 2]
     fname = 'nolanmary.wav'
-    try:
-        os.remove(fname)
-    except OSError:
-        pass
     rec = Recorder(out_fname=fname, durations=durations, debug=True)
 
     data_queue = rec.get_queue()
@@ -105,5 +107,3 @@ if __name__ == '__main__':
         print(data)
         if data == -1:
             break
-
-    

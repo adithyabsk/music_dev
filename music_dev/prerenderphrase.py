@@ -3,34 +3,27 @@ import PyQt5
 line = abjad.Staff()
 score = abjad.Score()
 score.append(line)
-for i in range(8):
+for i in range(1):
         line.append(abjad.Measure((4,4),[]))
-line[0].extend("e''4 d''4 c''4 d''4")
-line[1].extend("e''4 e''4 e''2")
-line[2].extend("d''4 d''4 d''2")
-line[3].extend("e''4 g''4 g''2")
-line[4].extend("e''4 d''4 c''4 d''4")
-line[5].extend("e''4 e''4 e''4 e''4")
-line[6].extend("d''4 d''4 e''4 d''4")
-line[7].extend("c''1")
+line[0].extend("e''4 g''4 g''2")
 score.add_final_bar_line()
 allnotes = []
 for measure in line:
         for note in measure:
                 allnotes.append(note)
 to_write = abjad.LilyPondFile.new(score)
-writefile = open('marypossibleframes/ground.ly','w')
+writefile = open('frames/phrasepossibleframes/ground.ly','w')
 writefile.write(format(to_write))
 writefile.close()
 for i in range(len(allnotes)):
         tweak(allnotes[i].note_head).color = 'red'
         to_write = abjad.LilyPondFile.new(score)
-        writefile = open('marypossibleframes/' + str(i) + 'wrong.ly','w')
+        writefile = open('frames/phrasepossibleframes/' + str(i) + 'wrong.ly','w')
         writefile.write(format(to_write))
         writefile.close()
         tweak(allnotes[i].note_head).color = 'green'
         to_write = abjad.LilyPondFile.new(score)
-        writefile = open('marypossibleframes/' + str(i) + 'right.ly','w')
+        writefile = open('frames/phrasepossibleframes/' + str(i) + 'right.ly','w')
         writefile.write(format(to_write))
         writefile.close()
         tweak(allnotes[i].note_head).color = 'black'

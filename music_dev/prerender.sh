@@ -1,12 +1,12 @@
 python prerendermary.py
-cd marypossibleframes
+cd frames/marypossibleframes
 lilypond -fpng *.ly
-cd ..
+cd ../..
 python prerenderphrase.py
-cd phrasepossibleframes
+cd frames/phrasepossibleframes
 lilypond -fpng *.ly
-cd ..
+cd ../..
 python prerendernote.py
-cd notepossibleframes
+cd frames/notepossibleframes
 lilypond -fpng *.ly
-cd ..
+cd ../..

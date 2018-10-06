@@ -26,8 +26,8 @@ datafile = open(sys.argv[1] + '/data.csv','r')
 lens = []
 freqs = []
 for line in datafile:
-        lens.append(float(line.split(',')[0]))
-        freqs.append(float(line.split(',')[1]))
+    lens.append(float(line.split(',')[0]))
+    freqs.append(float(line.split(',')[1]))
 def rightnote(truth):
         return abs(data_queue.get() - truth) < 20
 image = mpimg.imread(sys.argv[1] + '/ground.png')
@@ -37,28 +37,28 @@ plt.ion()
 plt.show()
 fname = 'nolanmary.wav'
 try:
-        os.remove(fname)
+    os.remove(fname)
 except OSError:
-        pass
+    pass
 rec = Recorder(out_fname=fname,durations=lens, debug=True)
 data_queue = rec.get_queue()
 for i in range(4):
-        print("\7")
-        time.sleep(.5)
+    print("\7")
+    time.sleep(.5)
 threading.Thread(target=rec.record).start()
 for i in range(numnotes):
-        if(not rightnote(freqs[i])):
-                image = mpimg.imread(sys.argv[1] + '/' + str(i) + 'wrong.png')
-                image = image[30:120,:,:]
-                plt.imshow(image)
-                plt.pause(.001)
-                plt.ion()
-                plt.show()
-        else:
-                image = mpimg.imread(sys.argv[1] + '/' + str(i) + 'right.png')
-                image = image[30:120,:,:]
-                plt.imshow(image)
-                plt.pause(.001)
-                plt.ion()
-                plt.show()
+    if(not rightnote(freqs[i])):
+        image = mpimg.imread(sys.argv[1] + '/' + str(i) + 'wrong.png')
+        image = image[30:120,:,:]
+        plt.imshow(image)
+        plt.pause(.001)
+        plt.ion()
+        plt.show()
+    else:
+        image = mpimg.imread(sys.argv[1] + '/' + str(i) + 'right.png')
+        image = image[30:120,:,:]
+        plt.imshow(image)
+        plt.pause(.001)
+        plt.ion()
+        plt.show()
  
