@@ -65,10 +65,10 @@ def main():
         if obs_note == -1:
             time.sleep(3)
             acc = len(err_count) / numnotes
-            print("Accuracy: {:.2f}\%".format(acc*10))
-            if len(err_count) / numnotes > 0.8:
-                print("You missed notes {}".format(', '.join(err_count)))
-                print('Good work, you can do better though, try again until you reach 80\% accuracy to move on to the next stage')
+            print("Accuracy: {:.2f}%".format(acc*100))
+            if len(err_count) / numnotes <  0.8:
+                print("You missed notes {}".format(', '.join(map(str, err_count))))
+                print('Good work, you can do better though, try again until you reach 80% accuracy to move on to the next stage')
             else:
                 print("You didn't miss any notes!")
                 print('Great work you are ready to move on to the next stage')
