@@ -1,3 +1,7 @@
 numpy
 sounddevice
 abjad
+soundfile
+scipy
+PyQt5
+matplotlib
