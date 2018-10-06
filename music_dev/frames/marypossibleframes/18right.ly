@@ -64,6 +64,7 @@
                 e''4
                 \tweak color #green
                 e''4
+                \tweak color #yellow
                 e''4
                 e''4
             }   % measure

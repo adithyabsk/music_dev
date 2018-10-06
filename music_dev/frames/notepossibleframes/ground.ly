@@ -16,6 +16,7 @@
         {
             {   % measure
                 \time 4/4
+                \tweak color #yellow
                 c''1
                 \bar "|." %! SCORE1
             }   % measure

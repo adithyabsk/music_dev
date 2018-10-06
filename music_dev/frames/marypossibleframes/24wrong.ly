@@ -80,6 +80,7 @@
                 d''4
             }   % measure
             {   % measure
+                \tweak color #yellow
                 c''1
                 \bar "|." %! SCORE1
             }   % measure

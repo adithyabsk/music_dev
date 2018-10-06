@@ -26,6 +26,7 @@
                 d''4
             }   % measure
             {   % measure
+                \tweak color #yellow
                 e''4
                 e''4
                 e''2

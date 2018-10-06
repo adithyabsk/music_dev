@@ -16,6 +16,7 @@
         {
             {   % measure
                 \time 4/4
+                \tweak color #yellow
                 e''4
                 g''4
                 g''2
