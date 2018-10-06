@@ -29,17 +29,20 @@ class Recorder():
     def get_queue(self):
         return self.data_queue
 
+    # @profile
     def fft_analyze(self, data, rate):
         spectre = np.fft.fft(data)
         freq = np.fft.fftfreq(data.size, 1/rate)
         mask = freq > 0
         return freq[np.argmax(np.abs(spectre[mask]))]
 
+    # @profile
     def record(self):
         raw_queue = Queue()
         full_arr = np.array([])
         ret_arr = []
 
+        # @profile
         def callback(indata, frames, time, status):
             """Audio callback"""
             if status:
