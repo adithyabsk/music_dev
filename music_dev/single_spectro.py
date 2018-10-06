@@ -15,7 +15,7 @@ import pickle
 # plt.plot(np.arange(data1.size), data1)
 # plt.figure()
 # 
-rate, data = wave.read('e_harm3.wav')
+rate, data = wave.read('testd5.wav')
 # plt.plot(np.arange(data.size), data)
 # plt.show()
 # 

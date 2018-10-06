@@ -23,11 +23,11 @@ def getfreq(lens):
 """
 
 note_count = 0
-# @profile
+err_count = []
 def main():
-    # @profile
+    print("Welcome to Bars, your personal music tutor")
     def rightnote(obs, exp):
-        return abs(obs - exp) < 20
+        return (abs(obs - exp) < 100)
 
     def preload_display(path, length):
         return ([mpimg.imread('{}/{}right.png'.format(path, i))[30:120,:,:] for i in range(length)],
@@ -63,13 +63,22 @@ def main():
         obs_note = data_queue.get()
 
         if obs_note == -1:
-            time.sleep(2)
+            time.sleep(3)
+            acc = len(err_count) / numnotes
+            print("Accuracy: {:.2f}\%".format(acc*10))
+            if len(err_count) / numnotes > 0.8:
+                print("You missed notes {}".format(', '.join(err_count)))
+                print('Good work, you can do better though, try again until you reach 80\% accuracy to move on to the next stage')
+            else:
+                print("You didn't miss any notes!")
+                print('Great work you are ready to move on to the next stage')
             quit()
 
         global note_count
 
         if(not rightnote(obs_note, freqs[note_count])):
             image = wimages[note_count]
+            err_count.append(note_count)
         else:
             image = rimages[note_count]
 
@@ -84,13 +93,13 @@ def main():
         ax1.imshow(image)
 
     # Setup recorder
-    rec = Recorder(out_fname=fname, durations=lens, debug=True)
+    rec = Recorder(out_fname=fname, durations=lens, debug=False)
     data_queue = rec.get_queue()
 
-    # # Play "metronome"
-    # for i in range(4):
-    #     print("\7")
-    #     time.sleep(.5)
+    # Play "metronome"
+    for i in range(4):
+        print("\7")
+        time.sleep(.5)
 
     # Start animation and recording
     ani = animation.FuncAnimation(fig, animate, init_func=init_func, interval=100)
