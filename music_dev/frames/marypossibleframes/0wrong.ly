@@ -18,6 +18,7 @@
                 \time 4/4
                 \tweak color #red
                 e''4
+                \tweak color #yellow
                 d''4
                 c''4
                 d''4

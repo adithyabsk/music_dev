@@ -30,6 +30,7 @@
                 e''4
                 \tweak color #green
                 e''4
+                \tweak color #yellow
                 e''2
             }   % measure
             {   % measure

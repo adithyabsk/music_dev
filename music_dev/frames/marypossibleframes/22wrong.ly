@@ -74,6 +74,7 @@
                 d''4
                 \tweak color #red
                 d''4
+                \tweak color #yellow
                 e''4
                 d''4
             }   % measure

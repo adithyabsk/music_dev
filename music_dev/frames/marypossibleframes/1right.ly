@@ -20,6 +20,7 @@
                 e''4
                 \tweak color #green
                 d''4
+                \tweak color #yellow
                 c''4
                 d''4
             }   % measure

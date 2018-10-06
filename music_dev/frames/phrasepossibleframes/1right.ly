@@ -20,6 +20,7 @@
                 e''4
                 \tweak color #green
                 g''4
+                \tweak color #yellow
                 g''2
                 \bar "|." %! SCORE1
             }   % measure

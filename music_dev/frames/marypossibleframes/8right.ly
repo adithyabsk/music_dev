@@ -38,6 +38,7 @@
                 d''4
                 \tweak color #green
                 d''4
+                \tweak color #yellow
                 d''2
             }   % measure
             {   % measure

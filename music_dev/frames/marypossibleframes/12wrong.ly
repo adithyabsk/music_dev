@@ -50,6 +50,7 @@
                 g''2
             }   % measure
             {   % measure
+                \tweak color #yellow
                 e''4
                 d''4
                 c''4

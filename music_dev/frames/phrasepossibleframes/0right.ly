@@ -18,6 +18,7 @@
                 \time 4/4
                 \tweak color #green
                 e''4
+                \tweak color #yellow
                 g''4
                 g''2
                 \bar "|." %! SCORE1
